@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Liked Pages</h1>
+
+    <form method="post" action="{% url 'unlike_pages' %}">
+        {% csrf_token %}
+        {% for page in pages %}
+            <input type="checkbox" name="pages" value="{{ page.id }}"> {{ page.name }}<br>
+        {% endfor %}
+        <input type="submit" value="Unlike selected pages">
+    </form>
+{% endblock %}
